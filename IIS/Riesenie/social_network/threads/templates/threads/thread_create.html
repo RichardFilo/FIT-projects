@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+<title>Create thread</title>
+
+{% endblock %}
+
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+<form method='POST'>
+    {% csrf_token %}
+    <fieldset class="form-group">
+        <legend>Create thread</legend>
+        {{ form|crispy }}
+    </fieldset>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Create</button>
+    </div>
+</form>
+
+{% endblock %}

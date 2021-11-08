@@ -1,0 +1,23 @@
+
+
+{% extends "base.html" %}
+
+{% block title %}
+
+<title>About</title>
+
+{% endblock %}
+
+{% block content %}
+
+<h1 class="display-3">GroupIT</h1>
+<p class="lead">If you want to <big class="">group</big> with other people and discuss various topics. Just do it.</p>
+<hr class="my-4">
+<p>It is our school project that we have done on the subject of information systems.</p>
+{% if not user.is_authenticated %}
+<p class="lead">
+    <a class="btn btn-primary btn-lg" href="{% url 'signup' %}" role="button">Join us</a>
+</p>
+{% endif %}
+
+{% endblock %}

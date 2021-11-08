@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+<title>Thread {{ obj.id }}</title>
+
+{% endblock %}
+
+{% block content %}
+
+{% if visib %}
+
+<div class="text-center">
+    <img class="rounded-circle m-3" src="{{ obj.creator.account.image.url }}" alt="profile-image" height="100" width="100">
+    <h4>
+        User 
+        <strong><a href="{% url 'account' obj.creator.username %}">{{obj.creator.username}}</a></strong>
+         in the group 
+        <strong><a href="{% url 'group' obj.group.label %}">{{obj.group.label}}</a></strong>
+    </h4>
+    <h1 class="">{{obj.subject}}</h1>
+    {% if role == 3 or user.is_superuser %}
+        <a href="{% url 'thread_edit' obj.id %}" class="btn btn-outline-primary">Edit thread</a>
+        <a href="{% url 'thread_delete' obj.id %}" class="btn btn-outline-danger">Delete thread</a>
+    {% endif %}
+</div>
+    
+{% for item in items %}
+    <div class="card border-primary m-3 p-3">
+        <div class="row">
+            <div class="col-md-3 text-center">
+                <a href="{% url 'account' item.creator.username %}"> 
+                    <img class="rounded-circle m-3" src="{{ item.creator.account.image.url }}" alt="profile-image" height="100" width="100">
+                    <h4>
+                        <strong>{{item.creator.username}}</strong>
+                    </h4>
+                </a>
+                {% if role > 0 %}
+                    {% if item.userRank == 0 %}
+                        <div class="row pl-2">
+                            <a href="{% url 'post_dislike' item.id %}" class="btn btn-outline-warning col">Dislike</a>
+                            <h4 class="col">
+                                <strong>{{item.rank}}</strong>
+                            </h4>
+                            <a href="{% url 'post_like' item.id %}" class="btn btn-outline-primary col">Like</a>
+                        </div>
+                    {% elif item.userRank == 1 %}
+                        <div class="row pl-2">
+                            <a href="{% url 'post_dislike' item.id %}" class="btn btn-outline-warning col">Dislike</a>
+                            <h4 class="col">
+                                <strong>{{item.rank}}</strong>
+                            </h4>
+                            <div class="btn btn-primary col">Like</div>
+                        </div>
+                    {% else %}
+                        <div class="row pl-2">
+                            <div class="btn btn-warning col">Dislike</div>
+                            <h4 class="col">
+                                <strong>{{item.rank}}</strong>
+                            </h4>
+                            <a href="{% url 'post_like' item.id %}" class="btn btn-outline-primary col">Like</a>
+                        </div>
+                    {% endif %}
+                {% else %}
+                    <h4 class="col">
+                        <strong>{{item.rank}}</strong>
+                    </h4>
+                {% endif %}
+                {% if role == 3 or user.is_superuser %}
+                    <a href="{% url 'post_delete' item.id %}" class="btn btn-outline-danger">Delete</a>
+                {% endif %}
+            </div>
+            <div class="col-md-9 pt-3 pb-3">    
+                <p class="text-muted">{{ item.content|linebreaks }}</p>
+            </div>
+        </div>
+    </div>
+{% empty %}
+    <div class="row">
+        <div class="col">
+            <h4>The thread has no post.</h4>
+        </div>
+    </div>
+{% endfor %}
+{% if role > 0 %}
+    {% load crispy_forms_tags %}
+    <form method='POST'>
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend>Create post</legend>
+            {{ form|crispy }}
+        </fieldset>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+    </form>
+{% endif %}
+
+{% endif %}
+
+{% endblock %}
+
+
+
+

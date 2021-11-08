@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+<title>Create group</title>
+
+{% endblock %}
+
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+<form method='POST' enctype="multipart/form-data">
+    {% csrf_token %}
+    <fieldset class="form-group">
+        <legend>Create group</legend>
+        {{ form|crispy }}
+    </fieldset>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Create</button>
+    </div>
+</form>
+
+{% endblock %}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {# Load the tag library #}
+    {% load bootstrap4 %}
+
+    {# Load CSS and JavaScript #}
+    {% bootstrap_css %}         
+    {% bootstrap_javascript jquery='full' %}
+
+    {% load static %}  
+
+    <meta charset="utf-8">
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% block title %}<title>GroupIT</title>{% endblock %}
+</head>
+
+<body>
+    {% include "topnav.html" %}
+
+    <div class="container jumbotron">
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        {% endif %}
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

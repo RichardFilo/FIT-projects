@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+<title>Groups</title>
+
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<div class="text-center mb-3">
+    <a href="{% url 'group_create' %}" class="btn btn-primary">Create new group</a>
+</div>
+{% endif %}
+
+<div class="row">
+{% for item in groups %}
+    <div class="col-md-4">
+        <div class="card border-primary m-3">
+            <a href="{% url 'group' item.label %}" class="btn btn-outline-primary ">
+                <img class="rounded-circle m-3" src="{{ item.image.url }}" alt="profile-image" height="100" width="100">
+                <h1>{{ item.label }}</h1>
+            </a>
+        </div>
+    </div>
+{% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% for item in items %}
+    <div class="card border-primary m-4">
+        <a href="{% url 'thread' item.id %}" class="btn btn-outline-primary">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                <div class="my m-3">                          
+                    <img class="rounded-circle m-1" src="{{ item.creator.account.image.url }}" alt="profile-image" height="100" width="100">
+                </div>
+                <div class="my-auto"> 
+                    <h1>{{ item.subject }}</h1>
+                    <p>Created by {{ item.creator.username }} in the group {{ item.group.label }}.</p>
+                </div></div>
+            </div>
+        </a>
+    </div>
+{% empty %}
+    <div class="row">
+        <div class="col">
+            <h4>There are no threads you can see.</h4>
+        </div>
+    </div>
+{% endfor %}
+
+{% endblock %}

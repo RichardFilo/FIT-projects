@@ -1,0 +1,49 @@
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container">
+    <a class="navbar-brand" href="{% url 'home' %}">GroupIT</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav mr-auto">
+        {% url 'home' as home_url %}
+        <li class="nav-item {% if request.path == home_url %} active{% endif %}">
+          <a class="nav-link" href="{{home_url}}">Home</a>
+        </li>
+        {% url 'groups' as groups_url %}
+        <li class="nav-item {% if request.path == groups_url %} active{% endif %}">
+          <a class="nav-link" href="{{groups_url}}">Groups</a>
+        </li>
+        {% url 'accounts' as people_url %}
+        <li class="nav-item {% if request.path == people_url %} active{% endif %}">
+          <a class="nav-link" href="{{people_url}}">People</a>
+        </li>
+        {% url 'about' as about_url %}
+        <li class="nav-item {% if request.path == about_url %} active{% endif %}">
+          <a class="nav-link" href="{{about_url}}">About</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ">
+        {% if user.is_authenticated %}
+        {% url 'account' user.username as account_url %}
+        <li class="nav-item {% if request.path == account_url %} active{% endif %}">
+          <a class="nav-link" href="{{account_url}}">{{user.username}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout' %}">Log out</a>
+        </li>
+        {% else %}
+        {% url 'login' as login_url %}
+        <li class="nav-item {% if request.path == login_url %} active{% endif %}">
+          <a class="nav-link" href="{{login_url}}">Log in</a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-secondary" href="{% url 'signup' %}">Sign up</a>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+

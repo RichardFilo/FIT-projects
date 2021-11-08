@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+<title>Sign up</title>
+
+{% endblock %}
+
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+<form method='POST'>
+    {% csrf_token %}
+    <fieldset class="form-group">
+        <legend>Sign up</legend>
+        {{ form|crispy }}
+    </fieldset>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Sign up</button>
+    </div>
+</form>
+
+{% endblock %}

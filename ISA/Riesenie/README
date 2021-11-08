@@ -1,0 +1,17 @@
+Filtrující DNS resolver
+
+Tento program spracovava iba DNS dotazy typu A. V inom pripade je klientovi zaslana RESPONSE REFUSED.
+Ak sa jedna o dotaz typu A tak sa kontroluje ci dotazovana domena nepatri do zoznamu neziaducich domen.
+Ak ano, klientovi je opat zaslana RESPONSE REFUSED. V opacnom pripade sa DNS dotaz preposle na vybrany server a odpoved z neho sa preposle priamo klientovi.
+
+Zoznam suborov:
+-dns.c - Kod v jazyku C
+-dns.h - Hlavickovy subor
+-Makefile - Potrebny na preklad
+-manual.pdf - Dokumentacia
+-README - Tento subor
+
+
+Spustenie programu:
+1.Najprv program prelozime pomocou prikazu "make".
+2.Nastavime potrebne parametre a spustime resolver pomocou "./dns -s server [-p port] -f filter_file".

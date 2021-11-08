@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf8"/>
+    <title>Projekt IIS</title>
+    <style type="text/css">
+    	table { border-collapse: collapse; }
+    	td, th { border: 1px solid black; padding: 0.3em 0.5em; text-align: left; }
+    	dt { font-weight: bold; margin-top: 0.5em; }
+    </style>
+</head>
+<body>
+
+<!-- Zkontrolujte prosím nastavení kódování v hlavičce dokumentu 
+     podle použitého editoru -->
+
+<h1>Sociální síť</h1> <!-- Nahradte názvem svého zadání -->
+
+<dl>
+	<dt>Autoři</dt>
+	<dd>Richard Fiľo <!-- Nahraďte skutečným jménem a e-mailem autora a popisem činnosti -->
+	    <a href="mailto:xfilor00@stud.fit.vutbr.cz">xfilor00@stud.fit.vutbr.cz</a> -
+		návrh a implementácia dátoveho modelu a funkcií vo view. 
+	</dd>
+	<dd>Adam Barča <!-- Nahraďte skutečným jménem a e-mailem autora a popisem činnosti -->
+	    <a href="mailto:xbarca04@stud.fit.vutbr.cz">xbarca04@stud.fit.vutbr.cz</a> - 
+		návrh a implementácia uživatelského rozhrania a testovanie.
+	</dd>
+    <p>(Poznamka: Rozdelenie je len orientačné, v skutočnosti sa úlohy riešiteľov prelínali.)</p>
+    <dt>URL aplikace</dt>
+	<dd><a href="https://rfilo.pythonanywhere.com/">https://rfilo.pythonanywhere.com/</a></dd>
+</dl>
+
+<h2>Uživatelé systému pro testování</h2>
+<table>
+<tr><th>Login</th><th>Heslo</th><th>Role</th></tr>
+<tr><td>rfilo</td><td>root1234</td><td>Administrátor</td></tr>
+<tr><td>abarca</td><td>root1234</td><td>Registrovaný uživatel</td></tr>
+<tr><td>test1</td><td>root1234</td><td>Registrovaný uživatel-Správca skupiny Test1</td></tr>
+<tr><td>test2</td><td>root1234</td><td>Registrovaný uživatel-Moderátor skupiny Test1</td></tr>
+<tr><td>test3</td><td>root1234</td><td>Registrovaný uživatel-Žiadateľ o moderátora skupiny Test1</td></tr>
+<tr><td>test4</td><td>root1234</td><td>Registrovaný uživatel-Člen skupiny Test1</td></tr>
+<tr><td>test5</td><td>root1234</td><td>Registrovaný uživatel-Žiadateľ o člena skupiny Test1</td></tr>
+</table>
+
+<h2>Implementace</h2>
+<p>Informačný systém je implementovaný vo frameworku python-django. Celková aplikácia sa skladá z viacerých podaplikácii.
+<br>Každá podaplikácia je zameraná na nejakú časť aplikácie.
+<br>Podaplikácie sa skladajú z urls.py, views.py, models.py, forms.py a adresár templates s príslušnými html súbormi.</p>
+<p>Funkcionalita uvedených kľúčových častí programu:</p>
+<ul>
+    <li><b>views</b> - funkcie na obsluhu HTTP žiadostí, vracajú HTTP odpovede, </li>
+    <li><b>urls</b> - funkcie mapujúce HTTP žiadosti na príslušné views, </li>
+    <li><b>models</b> - pythonovské objekty, ktoré definujú štruktúru dát aplikácie (vytvorené na základe ER diagramu) aj integritné obmedzenia,</li>
+    <li><b>forms</b> - formuláre, nad ktorými je možné robiť validáciu,</li>
+    <li><b>templates</b> - textové dokumenty, definujú štruktúru rozloženia HTML stránky. </li>
+</ul>
+<h4>Accounts</h4>
+<p>Doplňuje funkcionalitu User-a. V djangu je User a veci s tým spojené defaultne implementované.</p>
+
+<h4>Groups</h4>
+<p>Obsahuje implementáciu skupín, členov a vecí s tým spojených.</p>
+
+<h4>Threads</h4>
+<p>Obsahuje implementáciu vlákien, príspevkov a vecí s tým spojených.</p>
+
+<h3>Databáze</h3>
+
+<img src="./ER-diagram.jpg" alt="ERD" width="30%" height="30%"> </img>
+
+<h2>Instalace</h2>
+
+<ul>
+<li>Nakopírujte projekt na váš server.</li>
+<li>Pred inštaláciou je potrebné vytvoriť virtuálne prostredie pomocou <b>virtualenv</b> a nainštalovať do neho python3.8.</li>
+<li>Po zapnutí virtuálneho prostredia sa softwarové požiadavky nainštalujú príkazom <b>pip install -r req.txt</b>.</li>
+<li>V súbore <b>social_network/settings.py</b> nakonfigurujte pripojenie k databázovemu serveru.</li>
+<li>Pomocou príkazu <b>python manage.py makemigrations</b> a <b>python manage.py migrate</b> vytvoríme databázove objekty.</li>
+<li>Aplikácia sa spustí príkazom <b>python3 manage.py runserver</b>.</li>
+</ul>
+
+<h2>Známé problémy</h2>
+<p>Dúfame, že zadanie je úplne splnené. Niesu implementované iba rozšírenia.</p>
+
+</body>
+</html>

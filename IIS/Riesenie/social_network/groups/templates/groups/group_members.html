@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+<title>{{ obj.label }}</title>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="text-center">
+    <img class="rounded-circle"" src="{{ obj.image.url }}" alt="profile-image" height="200" width="200">
+    <h1 class="text-primary">{{obj.label}}</h1>
+    {% if content.role %}
+    <h3>{{ content.role }}</h3>
+    {% endif %}
+    {% for button in content.control %}
+    
+    <a href="{{ button.func_url }}" class="btn btn-outline-{{ button.color }}">{{ button.text }}</a>
+    
+    {% endfor %}
+
+</div>
+
+{% if visib %}
+
+<ul class="nav nav-tabs mt-3">
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'group' obj.label %}">Profile</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="{% url 'group_members' obj.label %}">Members</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'group_threads' obj.label %}">Threads</a>
+    </li>
+</ul>
+<div class="tab-content">
+    <div class="tab-pane fade mt-3 active show">
+        {% for mem_type in content.all_members %}
+            <h4>{{ mem_type.text }}</h4>
+            <div class="row">
+            {% for item in mem_type.items %}
+                <div class="col-md-4">
+                    <div class="card border-primary m-3">
+                        <a href="{% url 'account' item.user.username %}" class="btn btn-outline-primary ">
+                            <img class="rounded-circle m-3" src="{{ item.user.account.image.url }}" alt="profile-image" height="100" width="100">
+                            <h1>{{ item.user.username }}</h1>
+                            {% for button in mem_type.control %}
+                                {% if obj.creator.username != item.user.username %}
+                                <a href="{% url button.func obj.label item.user.username %}" class="btn btn-outline-{{ button.color }}">{{ button.text }}</a>
+                                {% endif %}
+                            {% endfor %}
+                        </a>
+                    </div>
+                </div>
+            {% empty %}
+                <p class="col text-muted">empty</p>
+            {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endif %}
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+<title>People</title>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+{% for item in accounts %}
+<div class="col-md-4">
+    <div class="card border-primary m-3">
+        <a href="{% url 'account' item.username %}" class="btn btn-outline-primary ">
+            <img class="rounded-circle m-3" src="{{ item.account.image.url }}" alt="profile-image" height="100" width="100">
+            <h1>{{ item.username }}</h1>
+        </a>
+    </div>
+</div>
+{% endfor %}
+</div>
+{% endblock %}
