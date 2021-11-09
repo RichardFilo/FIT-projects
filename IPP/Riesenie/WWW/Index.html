@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+    border: 2px solid;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+body {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1000px;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+</style>
+</head>
+<body>
+
+<h2>Test results</h2>
+
+<div style="overflow-x:auto;">
+<table>
+    <tr style="background-color: #698459; border-bottom-width: 2px; border-bottom-style: solid;">
+        <th>Test name</th>
+        <th>Expected RC</th>
+        <th>RC</th>
+        <th>Result</th>
+    </tr>
+        <tr>
+            <td>supplementary-tests/parse-only/simple_tag</td>
+            <td>0</td>
+            <td>0</td>
+            <td><b style="color:green;">PASS</b></td>
+        </tr>
+        
+        <tr>
+            <td>supplementary-tests/parse-only/write_test</td>
+            <td>0</td>
+            <td>0</td>
+            <td><b style="color:green;">PASS</b></td>
+        </tr>
+        
+        <tr>
+            <td>supplementary-tests/parse-only/read_test</td>
+            <td>0</td>
+            <td>0</td>
+            <td><b style="color:green;">PASS</b></td>
+        </tr>
+        
+        <tr>
+            <td>supplementary-tests/both/spec_example</td>
+            <td>0</td>
+            <td>0</td>
+            <td><b style="color:red;">FAIL</b></td>
+        </tr>
+        
+        <tr>
+            <td>supplementary-tests/both/error_string_out_of_range</td>
+            <td>58</td>
+            <td>0</td>
+            <td><b style="color:red;">FAIL</b></td>
+        </tr>
+        
+        <tr>
+            <td>supplementary-tests/both/read_test</td>
+            <td>0</td>
+            <td>0</td>
+            <td><b style="color:red;">FAIL</b></td>
+        </tr>
+        
+        <tr>
+            <td>supplementary-tests/int-only/stack_test</td>
+            <td>0</td>
+            <td>21</td>
+            <td><b style="color:red;">FAIL</b></td>
+        </tr>
+        
+        <tr>
+            <td>supplementary-tests/int-only/write_test</td>
+            <td>32</td>
+            <td>21</td>
+            <td><b style="color:red;">FAIL</b></td>
+        </tr>
+        
+        <tr style="background-color: #698459; border-top-width: 2px; border-top-style: solid;">
+            <td><b>Summary</b></td>
+            <td></td>
+            <td></td>
+            <td><b>3/8</b></td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>
